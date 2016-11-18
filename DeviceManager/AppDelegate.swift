@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataStorageManager?.updateLists()
         
         let window = UIWindow(frame: UIScreen.main.bounds)
+        window.tintColor = UIColor(red: 233.0/255.0, green: 30.0/255.0, blue: 99.0/255.0, alpha: 1.0)
+        
         self.window = window
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -32,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if let viewControllers = tabBarController.viewControllers, viewControllers.count == 2 {
-            if let projectListViewController = viewControllers[0] as? ProjectListViewController {
+            if let navigationController = viewControllers[0] as? UINavigationController,
+                let projectListViewController = navigationController.viewControllers.first as? ProjectListViewController
+            {
                 projectListViewController.dataStorageManager = dataStorageManager
             }
             

@@ -13,6 +13,8 @@ class ProjectListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    fileprivate let cellPadding: CGFloat = 20.0
+    
     var dataStorageManager: DataStorageManager? = nil {
         didSet {
             
@@ -30,7 +32,6 @@ class ProjectListViewController: UIViewController {
     }
     
     fileprivate var projects: [Project] = []
-    fileprivate var selectedProject: Project? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +44,22 @@ class ProjectListViewController: UIViewController {
         super.viewWillAppear(animated)
         
         refreshView()
-        
-        collectionView.contentInset = UIEdgeInsetsMake(100.0, 0,
-                                                       100.0, 0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let edgeInsets = UIEdgeInsetsMake(self.topLayoutGuide.length + cellPadding, 0,
+                                          self.bottomLayoutGuide.length + cellPadding, 0)
+        
+        collectionView.contentInset = edgeInsets
+        collectionView.scrollIndicatorInsets = edgeInsets
     }
     
     func refreshView() {
@@ -77,17 +85,6 @@ class ProjectListViewController: UIViewController {
         exampleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         
         return exampleLabel.sizeThatFits(initialSize)
-    }
-    
-    // MARK:
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowDeviceListForProject",
-            let deviceListViewController = segue.destination as? DeviceListViewController,
-            let project = selectedProject
-        {
-            deviceListViewController.devices = project.devices
-        }
     }
 }
 
@@ -121,23 +118,36 @@ extension ProjectListViewController: UICollectionViewDataSource {
 extension ProjectListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedProject = project(at: indexPath)
-        performSegue(withIdentifier: "ShowDeviceListForProject", sender: self)
+        
+        let project = self.project(at: indexPath)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        if let viewController = storyboard.instantiateViewController(withIdentifier: "DeviceListViewController") as? DeviceListViewController
+        {
+            viewController.devices = project.devices
+            self.navigationController?.pushViewController(viewController, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let project = self.project(at: indexPath)
         
-        let width = (UIScreen.main.bounds.width * 0.9) - 40
+        let width = UIScreen.main.bounds.width - (cellPadding * 2.0)
         let initialSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)
         
         let exampleLabel = UILabel(frame: CGRect(origin: .zero, size: initialSize))
         exampleLabel.text = project.name
         exampleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
         
-        let height = sizeOfDeviceFamiliesLabel(text: project.textForDevicesByFamily(), width: width).height + exampleLabel.sizeThatFits(initialSize).height + 30.0
+        let height = sizeOfDeviceFamiliesLabel(text: project.textForDevicesByFamily(), width: width).height + exampleLabel.sizeThatFits(initialSize).height + (10.0 * 3.0)
         
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return cellPadding
     }
 }
