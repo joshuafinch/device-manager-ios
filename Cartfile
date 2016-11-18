@@ -1,0 +1,4 @@
+github "bignerdranch/Freddy" ~> 3.0
+github "OAuthSwift/OAuthSwift" ~> 1.1.0
+github "Alamofire/Alamofire" ~> 4.1.0
+github "OAuthSwift/OAuthSwiftAlamofire" ~> 0.1.0

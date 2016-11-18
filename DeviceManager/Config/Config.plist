@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>base-url</key>
+	<string></string>
+	<key>devices-board-id</key>
+	<string></string>
+	<key>app-key</key>
+	<string></string>
+	<key>auth-token</key>
+	<string></string>
+	<key>secret</key>
+	<string></string>
+</dict>
+</plist>
