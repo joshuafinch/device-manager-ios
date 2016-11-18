@@ -125,7 +125,8 @@ extension ProjectListViewController: UICollectionViewDelegateFlowLayout {
         
         if let viewController = storyboard.instantiateViewController(withIdentifier: "DeviceListViewController") as? DeviceListViewController
         {
-            viewController.devices = project.devices
+            viewController.title = project.name
+            viewController.devicesByFamily = project.getDevicesByFamily()
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }

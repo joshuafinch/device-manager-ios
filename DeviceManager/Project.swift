@@ -28,7 +28,11 @@ struct Project {
         var dict: [Device.Family: [Device]] = [:]
         
         for family in allFamilies {
-            dict[family] = devices.filter({ $0.family == family })
+            
+            let devices = self.devices.filter({ $0.family == family })
+            if devices.count > 0 {
+                dict[family] = devices
+            }
         }
         
         return dict
@@ -41,7 +45,7 @@ struct Project {
         
         for family in devicesByFamilies.keys {
             if let deviceCount = devicesByFamilies[family]?.count, deviceCount > 0 {
-                text = text + family.rawValue + " " + String(deviceCount) + "\n"
+                text = text + family.presentableName() + ": " + String(deviceCount) + "\n"
             }
         }
         

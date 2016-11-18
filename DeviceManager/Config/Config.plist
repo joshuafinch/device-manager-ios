@@ -3,14 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>base-url</key>
-	<string></string>
+	<string>https://api.trello.com/1</string>
 	<key>devices-board-id</key>
-	<string></string>
+	<string>5735dade89ed6aa05205ba33</string>
 	<key>app-key</key>
-	<string></string>
+	<string>7d80fa7f06c3f8482600a7d6ae587b84</string>
 	<key>auth-token</key>
-	<string></string>
+	<string>c52e4a16ea67ee60b6a1c23a8fd10ad70a1b0a62737e20e2f6ca32eb5e5400b0</string>
 	<key>secret</key>
-	<string></string>
+	<string>b6d90f6d23edbb00fb82f6bad9e35375d3b9945bd84048c7f26b9201cf4b8a42</string>
 </dict>
 </plist>

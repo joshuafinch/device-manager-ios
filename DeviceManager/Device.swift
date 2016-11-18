@@ -15,6 +15,15 @@ struct Device {
         case ipad = "ipad"
         case android = "android"
         case other = "other"
+        
+        func presentableName() -> String {
+            switch self {
+            case .ipad: return "iPad"
+            case .iphone: return "iPhone"
+            case .android: return "Android"
+            case .other: return "Other"
+            }
+        }
     }
     
     let id: String

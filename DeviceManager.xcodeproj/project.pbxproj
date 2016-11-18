@@ -30,6 +30,7 @@
 		1266D2171DDF1CA10025FCDB /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1266D2161DDF1CA10025FCDB /* Config.plist */; };
 		1266D21C1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */; };
 		128FDABC1DDF4B8700B2B1EB /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */; };
+		128FDABE1DDF761600B2B1EB /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDABD1DDF761600B2B1EB /* DeviceCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		1266D2161DDF1CA10025FCDB /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Config.plist; path = Config/Config.plist; sourceTree = "<group>"; };
 		1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwiftAlamofire.framework; path = Carthage/Build/iOS/OAuthSwiftAlamofire.framework; sourceTree = "<group>"; };
 		128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		128FDABD1DDF761600B2B1EB /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			children = (
 				124379EC1DDF442200F5051E /* Device.swift */,
 				124379E41DDF393400F5051E /* DeviceListViewController.swift */,
+				128FDABD1DDF761600B2B1EB /* DeviceCell.swift */,
 			);
 			name = DeviceList;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				124379ED1DDF442200F5051E /* Device.swift in Sources */,
 				124379DD1DDF319300F5051E /* TrelloService.swift in Sources */,
 				124379EB1DDF39CD00F5051E /* DataStorageManager.swift in Sources */,
+				128FDABE1DDF761600B2B1EB /* DeviceCell.swift in Sources */,
 				1266D2141DDF1A640025FCDB /* ListService.swift in Sources */,
 				1266D1FE1DDF0F090025FCDB /* List.swift in Sources */,
 				1266D2111DDF19470025FCDB /* Label.swift in Sources */,
