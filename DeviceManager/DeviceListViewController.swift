@@ -11,4 +11,23 @@ import UIKit
 
 class DeviceListViewController: UIViewController {
     
+    var devices: [Device] = [] {
+        didSet {
+            refreshView()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshView()
+    }
+    
+    func refreshView() {
+        
+    }
 }

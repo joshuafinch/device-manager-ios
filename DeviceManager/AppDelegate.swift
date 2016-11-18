@@ -13,22 +13,33 @@ import Alamofire
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var dataStorageManager: DataStorageManager? = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        dataStorageManager = DataStorageManager.shared
+        dataStorageManager?.updateLists()
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         
-        let tabBarController = UITabBarController()
-        
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        let projectListViewController = storyboard.instantiateViewController(withIdentifier: "ProjectListViewController")
-        let scanAssetTagViewController = storyboard.instantiateViewController(withIdentifier: "ScanAssetTagViewController")
+        guard let tabBarController = storyboard.instantiateInitialViewController() as? UITabBarController else {
+            fatalError("No tab bar controller")
+        }
         
-        tabBarController.viewControllers = [projectListViewController, scanAssetTagViewController]
-        tabBarController.selectedIndex = 0
+        if let viewControllers = tabBarController.viewControllers, viewControllers.count == 2 {
+            if let projectListViewController = viewControllers[0] as? ProjectListViewController {
+                projectListViewController.dataStorageManager = dataStorageManager
+            }
+            
+//            if let scanAssetTagViewController = viewControllers[1] as? ScanAssetTagViewController {
+//                
+//            }
+        }
         
         window.rootViewController = tabBarController
         window.makeKeyAndVisible()
@@ -52,6 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        dataStorageManager?.updateLists()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

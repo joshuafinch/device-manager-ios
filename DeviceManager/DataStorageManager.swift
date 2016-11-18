@@ -34,5 +34,13 @@ class DataStorageManager {
     
     func updateLists() {
         
+        TrelloService.shared.listService.getLists { [weak self] (response) in
+            switch response {
+            case .success(lists: let lists):
+                self?.lists = lists
+            case .failure(error: let error):
+                print("Error: \(error)")
+            }
+        }
     }
 }

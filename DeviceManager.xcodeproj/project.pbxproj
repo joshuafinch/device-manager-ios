@@ -12,6 +12,8 @@
 		124379E51DDF393400F5051E /* DeviceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124379E41DDF393400F5051E /* DeviceListViewController.swift */; };
 		124379E81DDF396500F5051E /* ScanAssetTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124379E71DDF396500F5051E /* ScanAssetTagViewController.swift */; };
 		124379EB1DDF39CD00F5051E /* DataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124379EA1DDF39CD00F5051E /* DataStorageManager.swift */; };
+		124379ED1DDF442200F5051E /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124379EC1DDF442200F5051E /* Device.swift */; };
+		124379EF1DDF455500F5051E /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124379EE1DDF455500F5051E /* Project.swift */; };
 		1266D1CC1DDEFD030025FCDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1266D1CB1DDEFD030025FCDB /* AppDelegate.swift */; };
 		1266D1D31DDEFD030025FCDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1266D1D11DDEFD030025FCDB /* Main.storyboard */; };
 		1266D1D51DDEFD030025FCDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1266D1D41DDEFD030025FCDB /* Assets.xcassets */; };
@@ -27,6 +29,7 @@
 		1266D2141DDF1A640025FCDB /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1266D2131DDF1A640025FCDB /* ListService.swift */; };
 		1266D2171DDF1CA10025FCDB /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1266D2161DDF1CA10025FCDB /* Config.plist */; };
 		1266D21C1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */; };
+		128FDABC1DDF4B8700B2B1EB /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,8 @@
 		124379E41DDF393400F5051E /* DeviceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceListViewController.swift; sourceTree = "<group>"; };
 		124379E71DDF396500F5051E /* ScanAssetTagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanAssetTagViewController.swift; sourceTree = "<group>"; };
 		124379EA1DDF39CD00F5051E /* DataStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStorageManager.swift; sourceTree = "<group>"; };
+		124379EC1DDF442200F5051E /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		124379EE1DDF455500F5051E /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		1266D1C81DDEFD030025FCDB /* DeviceManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviceManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1266D1CB1DDEFD030025FCDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1266D1D21DDEFD030025FCDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +78,7 @@
 		1266D2131DDF1A640025FCDB /* ListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListService.swift; sourceTree = "<group>"; };
 		1266D2161DDF1CA10025FCDB /* Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Config.plist; path = Config/Config.plist; sourceTree = "<group>"; };
 		1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwiftAlamofire.framework; path = Carthage/Build/iOS/OAuthSwiftAlamofire.framework; sourceTree = "<group>"; };
+		128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +124,9 @@
 		124379E01DDF38A700F5051E /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
+				124379EE1DDF455500F5051E /* Project.swift */,
 				124379E21DDF392A00F5051E /* ProjectListViewController.swift */,
+				128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */,
 			);
 			name = ProjectList;
 			sourceTree = "<group>";
@@ -126,6 +134,7 @@
 		124379E11DDF38B300F5051E /* DeviceList */ = {
 			isa = PBXGroup;
 			children = (
+				124379EC1DDF442200F5051E /* Device.swift */,
 				124379E41DDF393400F5051E /* DeviceListViewController.swift */,
 			);
 			name = DeviceList;
@@ -408,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				124379ED1DDF442200F5051E /* Device.swift in Sources */,
 				124379DD1DDF319300F5051E /* TrelloService.swift in Sources */,
 				124379EB1DDF39CD00F5051E /* DataStorageManager.swift in Sources */,
 				1266D2141DDF1A640025FCDB /* ListService.swift in Sources */,
@@ -415,9 +425,11 @@
 				1266D2111DDF19470025FCDB /* Label.swift in Sources */,
 				124379E81DDF396500F5051E /* ScanAssetTagViewController.swift in Sources */,
 				1266D20F1DDF19400025FCDB /* Card.swift in Sources */,
+				128FDABC1DDF4B8700B2B1EB /* ProjectCell.swift in Sources */,
 				124379E51DDF393400F5051E /* DeviceListViewController.swift in Sources */,
 				1266D1CC1DDEFD030025FCDB /* AppDelegate.swift in Sources */,
 				124379E31DDF392A00F5051E /* ProjectListViewController.swift in Sources */,
+				124379EF1DDF455500F5051E /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
