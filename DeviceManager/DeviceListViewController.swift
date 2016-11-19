@@ -12,6 +12,27 @@ import UIKit
 class DeviceListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    private weak var refreshControl: UIRefreshControl!
+    
+    var projectId: String = ""
+    
+    var dataStorageManager: DataStorageManager? = nil {
+        didSet {
+            
+            NotificationCenter.default.removeObserver(self,
+                                                      name: .updatedLists,
+                                                      object: oldValue)
+            
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(refreshView),
+                                                   name: .updatedLists,
+                                                   object: dataStorageManager)
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     var devicesByFamily: [Device.Family: [Device]] = [:] {
         didSet {
@@ -30,6 +51,11 @@ class DeviceListViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateDevices), for: .valueChanged)
+        self.refreshControl = refresh
+        tableView.addSubview(refresh)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +66,28 @@ class DeviceListViewController: UIViewController {
     
     func refreshView() {
         tableView?.reloadData()
+    }
+    
+    func updateDevices() {
+        
+        let projectId = self.projectId
+        
+        dataStorageManager?.updateLists() { [weak self] in
+            if let list = self?.dataStorageManager?.lists.filter({ (list) -> Bool in
+                list.id == projectId
+            }).first {
+                let project = Project(list: list)
+                self?.devicesByFamily = project.getDevicesByFamily()
+            } else {
+                self?.devicesByFamily = [:]
+            }
+            
+            self?.refreshControl.endRefreshing()
+        }
+    }
+    
+    func refreshDevices() {
+        
     }
     
     fileprivate func device(at indexPath: IndexPath) -> Device {

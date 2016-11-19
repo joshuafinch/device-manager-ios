@@ -141,6 +141,9 @@ extension ProjectListViewController: UICollectionViewDelegateFlowLayout {
         {
             viewController.title = project.name
             viewController.devicesByFamily = project.getDevicesByFamily()
+            viewController.dataStorageManager = dataStorageManager
+            viewController.projectId = project.id
+            
             self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
