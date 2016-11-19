@@ -44,13 +44,12 @@ class ListService: ListServiceType {
  
         guard let baseUrlString = config["base-url"] as? String,
             let devicesBoardId = config["devices-board-id"] as? String,
-            let authToken = config["auth-token"] as? String,
             let appKey = config["app-key"] as? String,
             let secret = config["secret"] as? String else {
             fatalError("Couldn't get configuration values")
         }
         
-        let urlString = baseUrlString + "/boards/" + devicesBoardId + "/lists" + "?key=" + appKey + "&token=" + authToken + "&cards=open&card_fields=labels,name,id,desc&fields=cards,name,id"
+        let urlString = baseUrlString + "/boards/" + devicesBoardId + "/lists" + "?cards=open&card_fields=labels,name,id,desc&fields=cards,name,id"
         
         sessionManager.request(urlString).validate().responseJSON { (response) in
             

@@ -95,8 +95,14 @@ class ScanAssetTagViewController: UIViewController, AVCaptureMetadataOutputObjec
             if metadataObj.stringValue != nil {
                 print("metadataObject: \(metadataObj.stringValue)")
                 
-                if metadataObj.stringValue.contains("https://assets.chelsea-apps.com/hardware"), let url = URL(string: metadataObj.stringValue) {
-                    UIApplication.shared.openURL(url)
+                if metadataObj.stringValue.contains("https://assets.chelsea-apps.com/hardware") {
+                    if var comps = URLComponents(string: metadataObj.stringValue) {
+                        comps.host = "assets.chelseaappsfactory.com"
+                        
+                        if let url = try? comps.asURL() {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
                 }
             }
         }

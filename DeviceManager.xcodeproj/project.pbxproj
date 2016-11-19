@@ -28,9 +28,12 @@
 		1266D2111DDF19470025FCDB /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1266D2101DDF19470025FCDB /* Label.swift */; };
 		1266D2141DDF1A640025FCDB /* ListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1266D2131DDF1A640025FCDB /* ListService.swift */; };
 		1266D2171DDF1CA10025FCDB /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1266D2161DDF1CA10025FCDB /* Config.plist */; };
-		1266D21C1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */; };
 		128FDABC1DDF4B8700B2B1EB /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */; };
 		128FDABE1DDF761600B2B1EB /* DeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDABD1DDF761600B2B1EB /* DeviceCell.swift */; };
+		128FDAC11DE0593400B2B1EB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128FDAC01DE0593400B2B1EB /* LoginViewController.swift */; };
+		128FDAC31DE06E5B00B2B1EB /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128FDAC21DE06E5B00B2B1EB /* KeychainAccess.framework */; };
+		128FDAC61DE0753100B2B1EB /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 128FDAC41DE0753100B2B1EB /* Cartfile */; };
+		128FDAC71DE0753100B2B1EB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 128FDAC51DE0753100B2B1EB /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,10 @@
 		1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwiftAlamofire.framework; path = Carthage/Build/iOS/OAuthSwiftAlamofire.framework; sourceTree = "<group>"; };
 		128FDABB1DDF4B8700B2B1EB /* ProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		128FDABD1DDF761600B2B1EB /* DeviceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceCell.swift; sourceTree = "<group>"; };
+		128FDAC01DE0593400B2B1EB /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		128FDAC21DE06E5B00B2B1EB /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		128FDAC41DE0753100B2B1EB /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		128FDAC51DE0753100B2B1EB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +97,8 @@
 			files = (
 				1266D20A1DDF18DA0025FCDB /* Alamofire.framework in Frameworks */,
 				1266D20B1DDF18DA0025FCDB /* Freddy.framework in Frameworks */,
+				128FDAC31DE06E5B00B2B1EB /* KeychainAccess.framework in Frameworks */,
 				1266D20C1DDF18DA0025FCDB /* OAuthSwift.framework in Frameworks */,
-				1266D21C1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				1266D1D11DDEFD030025FCDB /* Main.storyboard */,
+				128FDABF1DE0592800B2B1EB /* Login */,
 				124379E01DDF38A700F5051E /* ProjectList */,
 				124379E11DDF38B300F5051E /* DeviceList */,
 				124379E61DDF394900F5051E /* ScanAssetTag */,
@@ -162,6 +170,8 @@
 		1266D1BF1DDEFD030025FCDB = {
 			isa = PBXGroup;
 			children = (
+				128FDAC51DE0753100B2B1EB /* README.md */,
+				128FDAC41DE0753100B2B1EB /* Cartfile */,
 				1266D1CA1DDEFD030025FCDB /* DeviceManager */,
 				1266D1E11DDEFD040025FCDB /* DeviceManagerTests */,
 				1266D1EC1DDEFD040025FCDB /* DeviceManagerUITests */,
@@ -225,6 +235,7 @@
 		1266D2001DDF17F60025FCDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				128FDAC21DE06E5B00B2B1EB /* KeychainAccess.framework */,
 				1266D21B1DDF1F2E0025FCDB /* OAuthSwiftAlamofire.framework */,
 				1266D2071DDF18DA0025FCDB /* Alamofire.framework */,
 				1266D2081DDF18DA0025FCDB /* Freddy.framework */,
@@ -258,6 +269,14 @@
 				1266D2161DDF1CA10025FCDB /* Config.plist */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		128FDABF1DE0592800B2B1EB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				128FDAC01DE0593400B2B1EB /* LoginViewController.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				128FDAC61DE0753100B2B1EB /* Cartfile in Resources */,
 				1266D2171DDF1CA10025FCDB /* Config.plist in Resources */,
 				1266D1D81DDEFD030025FCDB /* LaunchScreen.storyboard in Resources */,
 				1266D1D51DDEFD030025FCDB /* Assets.xcassets in Resources */,
@@ -404,7 +424,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Freddy.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwift.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/OAuthSwiftAlamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
@@ -423,8 +443,10 @@
 				124379ED1DDF442200F5051E /* Device.swift in Sources */,
 				124379DD1DDF319300F5051E /* TrelloService.swift in Sources */,
 				124379EB1DDF39CD00F5051E /* DataStorageManager.swift in Sources */,
+				128FDAC11DE0593400B2B1EB /* LoginViewController.swift in Sources */,
 				128FDABE1DDF761600B2B1EB /* DeviceCell.swift in Sources */,
 				1266D2141DDF1A640025FCDB /* ListService.swift in Sources */,
+				128FDAC71DE0753100B2B1EB /* README.md in Sources */,
 				1266D1FE1DDF0F090025FCDB /* List.swift in Sources */,
 				1266D2111DDF19470025FCDB /* Label.swift in Sources */,
 				124379E81DDF396500F5051E /* ScanAssetTagViewController.swift in Sources */,

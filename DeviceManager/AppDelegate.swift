@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import OAuthSwift
+import KeychainAccess
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,32 +22,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         dataStorageManager = DataStorageManager.shared
-        dataStorageManager?.updateLists()
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.tintColor = UIColor(red: 233.0/255.0, green: 30.0/255.0, blue: 99.0/255.0, alpha: 1.0)
         
         self.window = window
         
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        
-        guard let tabBarController = storyboard.instantiateInitialViewController() as? UITabBarController else {
-            fatalError("No tab bar controller")
+        guard let data = try? Keychain(service: "codes.joshua.devices.trello").getData("credential"),
+            let credentialData = data,
+            let credential = NSKeyedUnarchiver.unarchiveObject(with: credentialData) as? OAuthSwiftCredential else
+        {
+            let loginViewController = LoginViewController(dismissCompletion: { [weak self] in
+                self?.dataStorageManager?.updateLists()
+                self?.setWindowRootViewControllerToTabBarController(window: window)
+            })
+            window.rootViewController = loginViewController
+            window.makeKeyAndVisible()
+            loginViewController.authWithTrello()
+            return true
         }
         
-        if let viewControllers = tabBarController.viewControllers, viewControllers.count == 2 {
-            if let navigationController = viewControllers[0] as? UINavigationController,
-                let projectListViewController = navigationController.viewControllers.first as? ProjectListViewController
-            {
-                projectListViewController.dataStorageManager = dataStorageManager
-            }
-            
-//            if let scanAssetTagViewController = viewControllers[1] as? ScanAssetTagViewController {
-//                
-//            }
-        }
+        SessionManager.default.adapter = OAuthSwiftRequestAdapter(credential)
+        dataStorageManager?.updateLists()
         
-        window.rootViewController = tabBarController
+        setWindowRootViewControllerToTabBarController(window: window)
+        
         window.makeKeyAndVisible()
         
         return true
@@ -75,6 +76,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    // MARK:
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if (url.host == "oauth-callback") {
+            OAuthSwift.handle(url: url)
+            return true
+        }
+        return false
+    }
+    
+    // MARK:
+    
+    func setWindowRootViewControllerToTabBarController(window: UIWindow) {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let tabBarController = storyboard.instantiateInitialViewController() as? UITabBarController else {
+            fatalError("No tab bar controller")
+        }
+        
+        if let viewControllers = tabBarController.viewControllers, viewControllers.count == 2 {
+            if let navigationController = viewControllers[0] as? UINavigationController,
+                let projectListViewController = navigationController.viewControllers.first as? ProjectListViewController
+            {
+                projectListViewController.dataStorageManager = dataStorageManager
+            }
+        }
+        
+        window.rootViewController = tabBarController
+    }
 }
 
