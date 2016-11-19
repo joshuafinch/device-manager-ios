@@ -32,7 +32,7 @@ class DataStorageManager {
         self.listService = listService
     }
     
-    func updateLists() {
+    func updateLists(_ finishedCallback: (() -> Void)? = nil) {
         
         TrelloService.shared.listService.getLists { [weak self] (response) in
             switch response {
@@ -41,6 +41,8 @@ class DataStorageManager {
             case .failure(error: let error):
                 print("Error: \(error)")
             }
+    
+            finishedCallback?()
         }
     }
 }

@@ -14,6 +14,7 @@ class ProjectListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let cellPadding: CGFloat = 20.0
+    private weak var refreshControl: UIRefreshControl!
     
     var dataStorageManager: DataStorageManager? = nil {
         didSet {
@@ -38,6 +39,11 @@ class ProjectListViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(refreshLists), for: .valueChanged)
+        self.refreshControl = refresh
+        collectionView.addSubview(refresh)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,6 +73,14 @@ class ProjectListViewController: UIViewController {
         self.projects = lists.map(Project.init)
         
         collectionView?.reloadData()
+    }
+    
+    func refreshLists() {
+        refreshControl.beginRefreshing()
+        
+        dataStorageManager?.updateLists() { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
     }
     
     // MARK: Helpers
